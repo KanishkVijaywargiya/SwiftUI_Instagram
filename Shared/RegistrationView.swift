@@ -19,6 +19,8 @@ struct RegistrationView: View {
     
     @Environment(\.presentationMode) private var presentationMode
     
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.purple, Color.blue]), startPoint: .top, endPoint: .bottom)
@@ -76,7 +78,9 @@ struct RegistrationView: View {
                         .padding(.horizontal, 32)
                 }
                 
-                Button(action: {}) {
+                Button(action: {
+                    viewModel.register(withEmail: email, password: password, image: selectedImage, fullName: fullname, username: username)
+                }) {
                     Text("Sign Up")
                         .font(.headline)
                         .foregroundColor(.white)
