@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042350C42650031200D21484 /* UploadPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042350C32650031200D21484 /* UploadPostViewModel.swift */; };
+		042350C62650246000D21484 /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042350C52650246000D21484 /* TextArea.swift */; };
 		04376E68264D74850095620E /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 04376E67264D74850095620E /* FirebaseFunctions */; };
 		04376E6A264D74850095620E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 04376E69264D74850095620E /* FirebaseMessaging */; };
 		04376E6C264D74850095620E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 04376E6B264D74850095620E /* FirebaseFirestoreSwift-Beta */; };
@@ -53,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042350C32650031200D21484 /* UploadPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewModel.swift; sourceTree = "<group>"; };
+		042350C52650246000D21484 /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
 		043F6454263BEFBD00B91760 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		04529C0F2638515A006A3478 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		04529C1526385499006A3478 /* PostGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGridView.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				048DF89B2640418F008B847A /* CustomTextField.swift */,
 				048DF89D264041A8008B847A /* CustomSecureField.swift */,
 				0467EE34264ADD4000F7E0DC /* Constants.swift */,
+				042350C52650246000D21484 /* TextArea.swift */,
 			);
 			name = Utils;
 			path = "New Group";
@@ -199,6 +204,7 @@
 				047D34E02635965200FFC06A /* Notifications */,
 				047D34DF2635964F00FFC06A /* Feed */,
 				0484C10D264D8F1600F38B7D /* SearchViewModel.swift */,
+				042350C32650031200D21484 /* UploadPostViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -462,7 +468,9 @@
 				047D34E6263597C900FFC06A /* MainTabView.swift in Sources */,
 				048DF89A26403DBA008B847A /* ResetPasswordView.swift in Sources */,
 				047D34FA263598DB00FFC06A /* UploadPostView.swift in Sources */,
+				042350C42650031200D21484 /* UploadPostViewModel.swift in Sources */,
 				04EBB2FC264E98D3006BFDA9 /* UserServices.swift in Sources */,
+				042350C62650246000D21484 /* TextArea.swift in Sources */,
 				0467EE35264ADD4000F7E0DC /* Constants.swift in Sources */,
 				043F6455263BEFBD00B91760 /* ImagePicker.swift in Sources */,
 				04C51216263A8AB900260253 /* ProfileHeaderView.swift in Sources */,

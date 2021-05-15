@@ -7,6 +7,8 @@
 
 import Firebase
 
+typealias FirestoreCompletion = ((Error?) -> Void)?
+
 struct UserServices {
     
     static func follow(uid: String, completion: ((Error?) -> Void)?) {

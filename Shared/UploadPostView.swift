@@ -13,6 +13,10 @@ struct UploadPostView: View {
     @State var captionText = ""
     @State var imagePickerPresented = false
     
+    @Binding var tabIndex: Int
+    
+    @ObservedObject var viewModel = UploadPostViewModel()
+    
     var body: some View {
         VStack {
             if postImage == nil {
@@ -35,18 +39,44 @@ struct UploadPostView: View {
                         .scaledToFill()
                         .frame(width: 96, height: 96)
                         .clipped()
+                        .cornerRadius(3.0)
                     
-                    TextField("Enter your caption...", text: $captionText)
+                    // TextField("Enter your caption...", text: $captionText)
+                    // TextEditor(text: $captionText)
+                    TextArea(text: $captionText, placeholder: "Enter your caption...")
+//                        .frame(height: 200)
                 }.padding()
                 
-                Button(action: {}) {
-                    Text("Share")
-                        .font(.system(size: 16, weight: .semibold))
-                        .frame(width: 360, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(5)
-                        .foregroundColor(.white)
-                }.padding()
+                HStack(spacing: 16) {
+                    Button(action: {
+                        captionText = ""
+                        postImage = nil
+                    }) {
+                        Text("Cancel")
+                            .font(.system(size: 16, weight: .semibold))
+                            .frame(width: 150, height: 50)
+                            .background(Color.red)
+                            .cornerRadius(5)
+                            .foregroundColor(.white)
+                    }.shadow(color: .gray, radius: 3, x: 0, y: -2.5)
+                    
+                    Button(action: {
+                        if let image = selectedImage {
+                            viewModel.uploadPost(caption: captionText, image: image) { _ in
+                                captionText = ""
+                                postImage = nil
+                                tabIndex = 0
+                            }
+                        }
+                    }) {
+                        Text("Share")
+                            .font(.system(size: 16, weight: .semibold))
+                            .frame(width: 200, height: 50)
+                            .background(Color.blue)
+                            .cornerRadius(5)
+                            .foregroundColor(.white)
+                    }.shadow(color: .gray, radius: 3, x: 0, y: -2.5)
+                }
             }
             
             Spacer()
@@ -58,11 +88,5 @@ extension UploadPostView {
     func loadImage() {
         guard let selectedImage = selectedImage else { return }
         postImage = Image(uiImage: selectedImage)
-    }
-}
-
-struct UploadPostView_Previews: PreviewProvider {
-    static var previews: some View {
-        UploadPostView()
     }
 }
