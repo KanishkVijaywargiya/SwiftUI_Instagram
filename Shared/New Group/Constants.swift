@@ -17,4 +17,3 @@ let COLLECTION_FOLLOWING = Firestore.firestore().collection("following")
 // posts data
 let COLLECTION_POSTS = Firestore.firestore().collection("posts")
 
-

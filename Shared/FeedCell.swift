@@ -6,26 +6,29 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct FeedCell: View {
+    let post: Post
+    
     var body: some View {
         VStack(alignment: .leading) {
             // user info
             HStack {
-                Image("captain")
+                KFImage(URL(string: post.ownerImageUrl))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 36, height: 36)
                     .clipped()
                     .cornerRadius(18)
                 
-                Text("Steve Rogers")
+                Text(post.ownerUsername)
                     .font(.system(size: 14, weight: .semibold))
             }
             .padding([.leading, .bottom], 8)
             
             // post image
-            Image("captain")
+            KFImage(URL(string: post.imageUrl))
                 .resizable()
                 .scaledToFill()
                 .frame(maxHeight: 440)
@@ -64,27 +67,21 @@ struct FeedCell: View {
             .foregroundColor(.primary)
             
             // caption
-            Text("3 likes")
+            Text("\(post.likes) \(post.likes > 1 ? "likes" : "like")")
                 .font(.system(size: 14, weight: .semibold))
                 .padding(.leading, 8)
                 .padding(.bottom, 0.5)
             
             HStack {
-                Text("Steve Rodgers").font(.system(size: 14, weight: .semibold)) +
-                    Text(" I can do this all day")
+                Text(post.ownerUsername).font(.system(size: 14, weight: .semibold)) +
+                    Text(" \(post.caption)")
                     .font(.system(size: 15))
             }.padding(.horizontal, 8)
-            Text("Captain America")
+            Text("\(post.timestamp)")
                 .font(.system(size: 14))
                 .foregroundColor(.secondary)
                 .padding(.leading, 8)
                 .padding(.top, -2)
         }
-    }
-}
-
-struct FeedCell_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedCell()
     }
 }

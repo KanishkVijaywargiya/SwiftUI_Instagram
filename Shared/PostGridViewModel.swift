@@ -1,0 +1,49 @@
+//
+//  PostViewModel.swift
+//  Instagram (iOS)
+//
+//  Created by KANISHK VIJAYWARGIYA on 16/05/21.
+//
+
+import Firebase
+import SwiftUI
+
+enum PostGridConfiguration {
+    case explore
+    case profile(String)
+}
+
+
+class PostGridViewModel: ObservableObject {
+    @Published var posts = [Post]()
+    
+    let config: PostGridConfiguration
+    
+    init(config: PostGridConfiguration) {
+        self.config = config
+        fetchPost(forConfig: config)
+    }
+    
+    func fetchPost(forConfig config: PostGridConfiguration) {
+        switch config {
+        case .explore:
+            fetchExplorePagePosts()
+        case .profile(let uid):
+            fetchUserPosts(forUid: uid)
+        }
+    }
+    
+    func fetchExplorePagePosts() {
+        COLLECTION_POSTS.getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            self.posts = documents.compactMap({try? $0.data(as: Post.self)})
+        }
+    }
+    
+    func fetchUserPosts(forUid uid: String) {
+        COLLECTION_POSTS.whereField("ownerUid", isEqualTo: uid).getDocuments { snapshot, _ in
+            guard let documents = snapshot?.documents else { return }
+            self.posts = documents.compactMap({try? $0.data(as: Post.self)})
+        }
+    }
+}
