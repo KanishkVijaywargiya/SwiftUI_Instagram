@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct CommentsView: View {
+    @State var commentText = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: 24) {
+                    ForEach(0..<10) { _ in
+                        CommentsCell()
+                    }
+                }
+            }.padding(.top)
+            
+            CustomInputView(inputText: $commentText, action: uploadComment)
+        }
+    }
+    
+    func uploadComment() {
+        
     }
 }
 

@@ -9,26 +9,34 @@ import SwiftUI
 import Kingfisher
 
 struct FeedCell: View {
-    let post: Post
+    @ObservedObject var viewModel: FeedCellViewModel
+    
+    var didLike: Bool { return viewModel.post.didLike ?? false}
+    
+    init(viewModel: FeedCellViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    @State private var animate = false
     
     var body: some View {
         VStack(alignment: .leading) {
             // user info
             HStack {
-                KFImage(URL(string: post.ownerImageUrl))
+                KFImage(URL(string: viewModel.post.ownerImageUrl))
                     .resizable()
                     .scaledToFill()
                     .frame(width: 36, height: 36)
                     .clipped()
                     .cornerRadius(18)
                 
-                Text(post.ownerUsername)
+                Text(viewModel.post.ownerUsername)
                     .font(.system(size: 14, weight: .semibold))
             }
             .padding([.leading, .bottom], 8)
             
             // post image
-            KFImage(URL(string: post.imageUrl))
+            KFImage(URL(string: viewModel.post.imageUrl))
                 .resizable()
                 .scaledToFill()
                 .frame(maxHeight: 440)
@@ -36,16 +44,24 @@ struct FeedCell: View {
             
             // action buttons
             HStack(spacing: 16) {
-                Button(action: {}) {
-                    Image(systemName: "heart")
+                Button(action: {
+                    self.animate = true
+                    didLike ? viewModel.unLike() : viewModel.like()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.animate = false
+                    }
+                }) {
+                    Image(systemName: didLike ? "heart.fill" : "heart")
                         .resizable()
                         .scaledToFill()
+                        .foregroundColor(didLike ? .red : .black)
                         .frame(width: 20, height: 20)
                         .font(.system(size: 20))
                         .padding(4)
                 }
+                .scaleEffect(animate ? 1.4 : 1)
                 
-                Button(action: {}) {
+                NavigationLink(destination: CommentsView()) {
                     Image(systemName: "bubble.right")
                         .resizable()
                         .scaledToFill()
@@ -67,17 +83,22 @@ struct FeedCell: View {
             .foregroundColor(.primary)
             
             // caption
-            Text("\(post.likes) \(post.likes > 1 ? "likes" : "like")")
-                .font(.system(size: 14, weight: .semibold))
-                .padding(.leading, 8)
-                .padding(.bottom, 0.5)
+            if(viewModel.likesString.isEmpty) {
+                EmptyView()
+            } else {
+                Text(viewModel.likesString)
+                    .font(.system(size: 14, weight: .semibold))
+                    .padding(.leading, 8)
+                    .padding(.bottom, 0.5)
+            }
             
             HStack {
-                Text(post.ownerUsername).font(.system(size: 14, weight: .semibold)) +
-                    Text(" \(post.caption)")
+                Text(viewModel.post.ownerUsername).font(.system(size: 14, weight: .semibold)) +
+                    Text(" \(viewModel.post.caption)")
                     .font(.system(size: 15))
             }.padding(.horizontal, 8)
-            Text("\(post.timestamp)")
+            
+            Text("\(viewModel.post.timestamp)")
                 .font(.system(size: 14))
                 .foregroundColor(.secondary)
                 .padding(.leading, 8)

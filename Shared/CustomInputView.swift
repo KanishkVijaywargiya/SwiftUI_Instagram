@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct CustomInputView: View {
+    @Binding var inputText: String
+    
+    var action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct CustomInputView_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomInputView()
+        VStack {
+            // divider
+            Rectangle()
+                .foregroundColor(Color(.separator))
+                .frame(width: UIScreen.main.bounds.width, height: 0.75)
+                .padding(.bottom, 8)
+            
+            // hstack with a send button & text field
+            HStack {
+                TextField("Comment...", text: $inputText)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .frame(minHeight: 30)
+                
+                Button(action: action) {
+                    Text("Send")
+                        .bold()
+                        .foregroundColor(.black)
+                }
+            }
+            .padding(.horizontal)
+        }
+        .padding(.bottom, 8)
     }
 }
