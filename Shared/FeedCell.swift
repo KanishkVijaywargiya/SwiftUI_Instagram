@@ -61,7 +61,7 @@ struct FeedCell: View {
                 }
                 .scaleEffect(animate ? 1.4 : 1)
                 
-                NavigationLink(destination: CommentsView()) {
+                NavigationLink(destination: CommentsView(post: viewModel.post)) {
                     Image(systemName: "bubble.right")
                         .resizable()
                         .scaledToFill()

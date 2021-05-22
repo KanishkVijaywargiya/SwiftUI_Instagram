@@ -6,8 +6,14 @@
 //
 
 import Firebase
+import FirebaseFirestoreSwift
 
-//struct Comment: Identifiable, ObservableObject {
-//
-//}
-//
+struct Comment: Identifiable, Codable {
+    @DocumentID var id: String?
+    let username: String
+    let postOwnerUid: String
+    let profileImageUrl: String
+    let commentText: String
+    let timestamp: Timestamp
+    let uid: String
+}

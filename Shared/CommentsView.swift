@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct CommentsView: View {
+    
+    @ObservedObject var viewModel: CommentsViewModel
     @State var commentText = ""
+    
+    var comment: [Comment] {
+        return viewModel.comments
+    }
+    
+    init(post: Post) {
+        self.viewModel = CommentsViewModel(post: post)
+    }
     
     var body: some View {
         VStack {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 24) {
-                    ForEach(0..<10) { _ in
-                        CommentsCell()
+                    ForEach(comment) { comment in
+                        CommentsCell(comment: comment)
                     }
                 }
             }.padding(.top)
@@ -25,12 +35,12 @@ struct CommentsView: View {
     }
     
     func uploadComment() {
-        
-    }
-}
-
-struct CommentsView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommentsView()
+        if(!commentText.isEmpty) {
+            viewModel.uploadComment(commentText: commentText)
+            commentText = ""
+            UIApplication.shared.endEditing()
+        } else {
+            UIApplication.shared.endEditing()
+        }
     }
 }
