@@ -19,6 +19,7 @@ class ProfileViewModel: ObservableObject {
     func follow() {
         guard let uid = user.id else { return }
         UserServices.follow(uid: uid) { _ in
+            NotificationsViewModel.uploadNotifications(toUid: uid, type: .follow)
             self.user.isFollowed = true
         }
     }

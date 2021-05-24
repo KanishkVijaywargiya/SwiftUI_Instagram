@@ -10,8 +10,11 @@
 		04052890265118810068AE8A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0405288F265118810068AE8A /* Post.swift */; };
 		0405289226511B4A0068AE8A /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0405289126511B4A0068AE8A /* FeedViewModel.swift */; };
 		04052894265136D80068AE8A /* PostGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04052893265136D80068AE8A /* PostGridViewModel.swift */; };
+		041B1E91265BD94A00C08563 /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041B1E90265BD94A00C08563 /* NotificationCellViewModel.swift */; };
 		042350C42650031200D21484 /* UploadPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042350C32650031200D21484 /* UploadPostViewModel.swift */; };
 		042350C62650246000D21484 /* TextArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042350C52650246000D21484 /* TextArea.swift */; };
+		0423B137265B88E9000564A6 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423B136265B88E9000564A6 /* Notification.swift */; };
+		0423B139265B8C47000564A6 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423B138265B8C47000564A6 /* NotificationsViewModel.swift */; };
 		04376E68264D74850095620E /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 04376E67264D74850095620E /* FirebaseFunctions */; };
 		04376E6A264D74850095620E /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 04376E69264D74850095620E /* FirebaseMessaging */; };
 		04376E6C264D74850095620E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 04376E6B264D74850095620E /* FirebaseFirestoreSwift-Beta */; };
@@ -67,8 +70,11 @@
 		0405288F265118810068AE8A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0405289126511B4A0068AE8A /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		04052893265136D80068AE8A /* PostGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGridViewModel.swift; sourceTree = "<group>"; };
+		041B1E90265BD94A00C08563 /* NotificationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCellViewModel.swift; sourceTree = "<group>"; };
 		042350C32650031200D21484 /* UploadPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPostViewModel.swift; sourceTree = "<group>"; };
 		042350C52650246000D21484 /* TextArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextArea.swift; sourceTree = "<group>"; };
+		0423B136265B88E9000564A6 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		0423B138265B8C47000564A6 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 		043F6454263BEFBD00B91760 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		04529C0F2638515A006A3478 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		04529C1526385499006A3478 /* PostGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGridView.swift; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 				0467EE30264AD11600F7E0DC /* User.swift */,
 				0405288F265118810068AE8A /* Post.swift */,
 				04BE8C162658F77700EABE25 /* Comment.swift */,
+				0423B136265B88E9000564A6 /* Notification.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -352,6 +359,8 @@
 		047D34E02635965200FFC06A /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				0423B138265B8C47000564A6 /* NotificationsViewModel.swift */,
+				041B1E90265BD94A00C08563 /* NotificationCellViewModel.swift */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -489,6 +498,7 @@
 				047D34EE2635988600FFC06A /* SearchView.swift in Sources */,
 				047D34EA2635981400FFC06A /* FeedView.swift in Sources */,
 				04529C1626385499006A3478 /* PostGridView.swift in Sources */,
+				0423B139265B8C47000564A6 /* NotificationsViewModel.swift in Sources */,
 				04BE8C1D2658F80800EABE25 /* CommentsViewModel.swift in Sources */,
 				048DF89826403D84008B847A /* RegistrationView.swift in Sources */,
 				048DF89C2640418F008B847A /* CustomTextField.swift in Sources */,
@@ -523,6 +533,8 @@
 				04529C1E263858A2006A3478 /* UserListView.swift in Sources */,
 				0467EE33264AD63300F7E0DC /* ImageUploader.swift in Sources */,
 				04DACB4A2638656F006DBE9B /* NotificationCell.swift in Sources */,
+				0423B137265B88E9000564A6 /* Notification.swift in Sources */,
+				041B1E91265BD94A00C08563 /* NotificationCellViewModel.swift in Sources */,
 				04BE8C172658F77700EABE25 /* Comment.swift in Sources */,
 				048DF89626403D7B008B847A /* LoginView.swift in Sources */,
 				04DACB4626386143006DBE9B /* Extensions.swift in Sources */,

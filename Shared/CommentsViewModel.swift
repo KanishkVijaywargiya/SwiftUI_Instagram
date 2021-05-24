@@ -34,6 +34,8 @@ class CommentsViewModel: ObservableObject {
                 print("Debug: Error uploading comment \(error.localizedDescription)")
                 return
             }
+            
+            NotificationsViewModel.uploadNotifications(toUid: self.post.ownerUid, type: .comment, post: self.post)
         }
     }
     
