@@ -22,11 +22,11 @@ class CommentsViewModel: ObservableObject {
         guard let postId = post.id else { return }
         
         let data : [String: Any] = ["username": user.username,
-                    "profileImageUrl": user.profileImageUrl,
-                    "uid": user.id ?? "",
-                    "timestamp": Timestamp(date: Date()),
-                    "postOwnerUid": post.ownerUid,
-                    "commentText": commentText
+                                    "profileImageUrl": user.profileImageUrl,
+                                    "uid": user.id ?? "",
+                                    "timestamp": Timestamp(date: Date()),
+                                    "postOwnerUid": post.ownerUid,
+                                    "commentText": commentText
         ]
         
         COLLECTION_POSTS.document(postId).collection("post-comments").addDocument(data: data) { error in
@@ -34,6 +34,8 @@ class CommentsViewModel: ObservableObject {
                 print("Debug: Error uploading comment \(error.localizedDescription)")
                 return
             }
+            
+            self.fetchComments()
             
             NotificationsViewModel.uploadNotifications(toUid: self.post.ownerUid, type: .comment, post: self.post)
         }
@@ -47,18 +49,9 @@ class CommentsViewModel: ObservableObject {
         // higher order function in swift
         query.addSnapshotListener { snapshot, _ in
             guard let addedDocs = snapshot?.documentChanges.filter({ $0.type == .added }) else { return }
-            self.comments.append(contentsOf: addedDocs.compactMap({ try? $0.document.data(as: Comment.self) }))
+            self.comments = addedDocs.compactMap({
+                try? $0.document.data(as: Comment.self)
+            })
         }
-        
-//        or
-        
-//        query.addSnapshotListener { snapshot, _ in
-//            snapshot?.documentChanges.forEach({ change in
-//                if change.type == .added {
-//                    guard let comment = try? change.document.data(as: Comment.self) else { return }
-//                    self.comments.append(comment)
-//                }
-//            })
-//        }
     }
 }
